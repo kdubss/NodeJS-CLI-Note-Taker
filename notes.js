@@ -41,18 +41,14 @@ const getAll = () => {
 };
 
 let getNote = (title) => {
-  console.log(`\nGetting note titled '${title}'!\n`);
+  const notes = fetchNotes().filter((note) => note.title === title);
+  return notes[0];
 };
 
 let removeNote = (title) => {
-  // 1. fetchNotes
   const notes = fetchNotes();
-  // 2. Filter notes, removing the one with the title of argument (can be done using filter);
   const notes2Save = notes.filter((note) => note.title !== title);
-  // 3. save new notes array.
   saveNotes(notes2Save);
-
-  // If returns True --> note was removed
   return notes.length !== notes2Save.length;
 };
 

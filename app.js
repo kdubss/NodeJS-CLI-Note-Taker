@@ -4,18 +4,32 @@ const yargs = require('yargs');
 
 const notes = require('./notes.js');
 
+const noteTitleOptions = () => {
+  return {
+    describe: 'Title of note',
+    demand: true,
+    alias: 't'
+  }
+};
+const noteBodyOptions = () => {
+  return {
+    describe: 'The body-content of the note',
+    demand: true,
+    alias: 'b'
+  }
+};
+
 const argv = yargs
   .command('add', 'Add a new note', {
-    title: {
-      describe: 'Title of note',
-      demand: true,
-      alias: 't'
-    },
-    body: {
-      describe: 'The body-content of the note',
-      demand: true,
-      alias: 'b'
-    }
+    title: noteTitleOptions(),
+    body: noteBodyOptions()
+  })
+  .command('list', 'List all notes')
+  .command('read', 'Reads individual notes based on note title', {
+    title: noteTitleOptions()
+  })
+  .command('remove', 'Removes a note based on note-title', {
+    title: noteTitleOptions()
   })
   .help()
   .argv;

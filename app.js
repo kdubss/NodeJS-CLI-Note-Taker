@@ -19,7 +19,7 @@ if (command === 'add') {
     console.log('Note created');
     notes.logNote(note);
   } else {
-    console.log('Note title taken');
+    console.log('Note title taken\n');
   }
 } else if (command === 'list') {
   notes.getAll();

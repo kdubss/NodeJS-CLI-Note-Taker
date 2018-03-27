@@ -45,7 +45,12 @@ let getNote = (title) => {
 };
 
 let removeNote = (title) => {
-  console.log(`\nRemoving note titled '${title}'!\n`);
+  // 1. fetchNotes
+  const notes = fetchNotes();
+  // 2. Filter notes, removing the one with the title of argument (can be done using filter);
+  const note2Save = notes.filter((note) => note.title !== title);
+  // 3. save new notes array.
+  saveNotes(note2Save);
 };
 
 module.exports = {

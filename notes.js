@@ -40,21 +40,28 @@ const getAll = () => {
   // Fetch all notes and display them to client.
 };
 
-let getNote = (title) => {
+const getNote = (title) => {
   const notes = fetchNotes().filter((note) => note.title === title);
   return notes[0];
 };
 
-let removeNote = (title) => {
+const removeNote = (title) => {
   const notes = fetchNotes();
   const notes2Save = notes.filter((note) => note.title !== title);
   saveNotes(notes2Save);
   return notes.length !== notes2Save.length;
 };
 
+const logNote = (note) => {
+  console.log('--');
+  console.log(`Title: ${note.title}`);
+  console.log(`Body: ${note.body}`);
+};
+
 module.exports = {
   addNote,
   getAll,
   getNote,
-  removeNote
+  removeNote,
+  logNote
 };

@@ -63,6 +63,5 @@ module.exports = {
   getAll,
   getNote,
   removeNote,
-  logNote,
-  editNote
+  logNote
 };

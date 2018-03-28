@@ -50,7 +50,7 @@ const command = argv._[0];
 if (command === 'add') {
   const note = notes.addNote(argv.title, argv.body, argv.date);
   if (note) {
-    console.log('Note created\n');
+    console.log('\n----\nNote created\n----');
     notes.logNote(note);
   } else {
     console.log('Note title taken\n');
@@ -73,10 +73,6 @@ if (command === 'add') {
   const noteRemoved = notes.removeNote(argv.title);
   let message = noteRemoved ? 'Note was removed' : 'Note not found';
   console.log(message);
-} else if (command === 'edit') {
-  console.log('\nEditing pre-existing note\n');
-  const note = notes.editNote(argv.title);
-  console.log(note);
 } else {
   console.log('\nCommand not recognized!\n');
 }

@@ -39,6 +39,9 @@ const argv = yargs
   .command('remove', 'Removes a note based on note-title', {
     title: noteTitleOptions()
   })
+  .command('edit', 'Edits a pre-exisiting note based on the title', {
+    title: noteTitleOptions()
+  })
   .help()
   .argv;
 const command = argv._[0];
@@ -66,12 +69,14 @@ if (command === 'add') {
   } else {
     console.log('Note not found!\n');
   }
-
 } else if (command === 'remove') {
   const noteRemoved = notes.removeNote(argv.title);
   let message = noteRemoved ? 'Note was removed' : 'Note not found';
   console.log(message);
-
+} else if (command === 'edit') {
+  console.log('\nEditing pre-existing note\n');
+  const note = notes.editNote(argv.title);
+  console.log(note);
 } else {
   console.log('\nCommand not recognized!\n');
 }

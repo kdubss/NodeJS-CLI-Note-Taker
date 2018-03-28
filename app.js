@@ -18,11 +18,19 @@ const noteBodyOptions = () => {
     alias: 'b'
   }
 };
+const noteDateOptions = () => {
+  return {
+    describe: 'The date of note creation',
+    demand: true,
+    alias: 'd'
+  }
+};
 
 const argv = yargs
   .command('add', 'Add a new note', {
     title: noteTitleOptions(),
-    body: noteBodyOptions()
+    body: noteBodyOptions(),
+    date: noteDateOptions(),
   })
   .command('list', 'List all notes')
   .command('read', 'Reads individual notes based on note title', {
@@ -37,19 +45,19 @@ const command = argv._[0];
 
 // Adding a new note:
 if (command === 'add') {
-  const note = notes.addNote(argv.title, argv.body);
+  const note = notes.addNote(argv.title, argv.body, argv.date);
   if (note) {
-    console.log('Note created');
+    console.log('Note created\n');
     notes.logNote(note);
   } else {
     console.log('Note title taken\n');
   }
-
 } else if (command === 'list') {
   const allNotes = notes.getAll();
-  console.log(`Printing ${allNotes.length} note(s)`)
+  console.log('\n---');
+  console.log(`Printing ${allNotes.length} note(s)\n`)
   allNotes.forEach((note) => notes.logNote(note));
-
+  console.log('\n');
 } else if (command === 'read') {
   const note = notes.getNote(argv.title);
   if (note) {

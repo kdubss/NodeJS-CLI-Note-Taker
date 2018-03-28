@@ -15,12 +15,13 @@ const saveNotes = (notes) => {
   fs.writeFileSync('notes-data.json', JSON.stringify(notes));
 };
 
-const addNote = (title, body) => {
+const addNote = (title, body, date) => {
   // console.log(`\nAdding note titled '${title}' with body content '${body}'!\n`);
   let notes = fetchNotes();
   let note = {
     title,
-    body
+    body,
+    date
   };
   // Checking for Duplicate Note Titles:
   const duplicateNotes = notes.filter((note) => note.title === title);
@@ -50,9 +51,11 @@ const removeNote = (title) => {
 };
 
 const logNote = (note) => {
-  console.log('--');
+  console.log('----');
+  console.log(`Date created: ${note.date}`);
   console.log(`Title: ${note.title}`);
-  console.log(`Body: ${note.body}`);
+  console.log(`Note: ${note.body}`);
+  console.log('----\n');
 };
 
 module.exports = {
